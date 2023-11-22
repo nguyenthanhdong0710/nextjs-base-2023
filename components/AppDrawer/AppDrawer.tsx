@@ -21,7 +21,6 @@ function AppDrawer({ width, height }: AppDrawerProps) {
       aria-label="rabbit-app-drawer"
     >
       <Drawer
-        container={window.document.body}
         variant="temporary"
         open={true}
         onClose={onClose}

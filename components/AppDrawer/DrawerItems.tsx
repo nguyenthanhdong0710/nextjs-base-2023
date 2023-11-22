@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import routerPath from "@/app/router-path";
+import routerPath from "@/router-path";
 import { Dashboard } from "@mui/icons-material";
 
 export type DrawerChildItem = {
@@ -16,24 +16,24 @@ export type DrawerItem = {
   matches?: Array<string>;
 };
 
-const DrawerItems: Array<DrawerItem> = [
+const DrawerItems = (locale: string): Array<DrawerItem> => [
   {
     icon: <Dashboard />,
-    label: "sidebar.home",
-    path: routerPath.dashboard,
+    label: "sidebar.dashboard",
+    path: routerPath(locale).dashboard,
   },
-  // {
-  //   icon: <PaperIcon />,
-  //   label: "sidebar.sample",
-  //   path: routerPath.listPageExample,
-  //   children: [
-  //     {
-  //       label: "sidebar.listSample",
-  //       path: routerPath.listPageExample,
-  //       matches: [routerPath.userDetail(), routerPath.userDetailEdit()],
-  //     },
-  //   ],
-  // },
+  {
+    icon: <Dashboard />,
+    label: "sidebar.sample",
+    path: routerPath(locale).example,
+    children: [
+      {
+        label: "sidebar.sample",
+        path: routerPath(locale).example,
+        matches: [routerPath(locale).example],
+      },
+    ],
+  },
 ];
 
 export default DrawerItems;

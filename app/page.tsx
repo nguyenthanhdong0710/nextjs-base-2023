@@ -1,6 +1,7 @@
 import Navigate from "@/components/Navigate";
-import routerPath from "./router-path";
+import LOCALES from "@/messages";
+import routerPath from "@/router-path";
 
 export default function Root() {
-  return <Navigate to={routerPath.dashboard}></Navigate>;
+  return <Navigate href={routerPath(LOCALES[0]).dashboard}></Navigate>;
 }

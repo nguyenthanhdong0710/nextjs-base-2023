@@ -1,22 +1,23 @@
 "use client";
 
-import routerPath from "@/app/router-path";
+import routerPath from "@/router-path";
 import Navigate from "@/components/Navigate";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 export default function NavigateLogin() {
+  const { locale } = useParams();
   const currentPathname = usePathname();
 
   return (
     <Navigate
-      to={
-        routerPath.login +
+      type="redirect"
+      href={
+        routerPath(String(locale)).login +
         "?" +
         new URLSearchParams({
-          redirect: currentPathname || routerPath.dashboard,
+          redirect: currentPathname || routerPath(String(locale)).dashboard,
         }).toString()
       }
-      replace
     />
   );
 }

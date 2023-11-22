@@ -1,30 +1,28 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Popover, Box, Typography } from "@mui/material";
+import { Popover, Box, Typography, useTheme } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import { DrawerItem, DrawerChildItem } from "./DrawerItems";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-const GListItem = styled(ListItem)(() => ({
-  ".MuiListItemButton-root": {
-    borderRadius: 10,
-  }, 
-  ".Mui-selected": {
-    ".MuiSvgIcon-root": {
-      color: "#0EA5E9",
+const GListItem = styled(ListItem)(() => {
+  const theme = useTheme();
+  return {
+    ".MuiListItemButton-root": {
+      borderRadius: 10,
     },
-    ".MuiListItemText-root": {
-      ".MuiTypography-root": {
-        color: "#0EA5E9",
-        fontWeight: 600,
+    ".Mui-selected": {
+      ".MuiSvgIcon-root": {
+        color: theme.palette.primary.main,
       },
     },
-  },
-}));
+  };
+});
 
 const GListItemButton = styled(ListItemButton)(() => ({
   borderRadius: 10,
@@ -42,6 +40,9 @@ type DrawerListItemProps = {
 };
 
 function DrawerListItem({ data }: DrawerListItemProps) {
+  const t = useTranslations();
+  const pathname = usePathname();
+
   const { hasOneSelected, selected } = useMemo(() => {
     let hasOneSelectedCheck = false;
     const selectedSet: { [key: number]: boolean } = {};
@@ -59,19 +60,18 @@ function DrawerListItem({ data }: DrawerListItemProps) {
     ];
     children.forEach((current, index) => {
       const matched = current.matches?.find((match) => {
-        return match === location.pathname;
+        return match === pathname;
       });
-      selectedSet[index] =
-        location.pathname === current.path || Boolean(matched);
+      selectedSet[index] = pathname === current.path || Boolean(matched);
       hasOneSelectedCheck = hasOneSelectedCheck || selectedSet[index];
     });
     return {
       hasOneSelected:
-        (!data.children?.length && location.pathname === data.path) ||
+        (!data.children?.length && pathname === data.path) ||
         hasOneSelectedCheck,
       selected: selectedSet,
     };
-  }, [data.children, data.matches, data.path, location.pathname]);
+  }, [data.children, data.matches, data.path]);
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -92,17 +92,6 @@ function DrawerListItem({ data }: DrawerListItemProps) {
   return (
     <>
       <GListItem disablePadding sx={{ pt: 1.5 }}>
-        {hasOneSelected && (
-          <Box
-            sx={{
-              height: 32,
-              width: 8,
-              borderRadius: 16,
-              marginLeft: -1.5,
-              backgroundColor: "gray.500",
-            }}
-          />
-        )}
         <ListItemButton
           aria-owns={open ? data.label : undefined}
           aria-haspopup="true"
@@ -112,19 +101,17 @@ function DrawerListItem({ data }: DrawerListItemProps) {
           className="flex flex-col justify-center items-center"
         >
           {data.icon}
-          <ListItemText
-            primary={
-              <Typography variant="body2" textAlign="center">
-                {data.label}
-              </Typography>
+          <Typography
+            variant="body2"
+            textAlign="center"
+            sx={
+              hasOneSelected
+                ? { fontWeight: "400 !important", color: "primary.main" }
+                : {}
             }
-            sx={{
-              ".MuiListItemText-primary":
-                hasOneSelected && data.children?.length
-                  ? { fontWeight: "400 !important" }
-                  : {},
-            }}
-          />
+          >
+            {t(data.label)}
+          </Typography>
         </ListItemButton>
       </GListItem>
       {data.children?.length ? (
@@ -158,14 +145,20 @@ function DrawerListItem({ data }: DrawerListItemProps) {
                     // navigate(child.path);
                   }}
                 >
-                  <ListItemText
-                    sx={{
-                      ".MuiListItemText-primary": selected[index]
-                        ? { color: "primary.main", fontWeight: "600" }
-                        : {},
-                    }}
-                    primary={child.label}
-                  />
+                  <Typography
+                    variant="body2"
+                    textAlign="center"
+                    sx={
+                      selected[index]
+                        ? {
+                            fontWeight: "400 !important",
+                            color: "primary.main",
+                          }
+                        : {}
+                    }
+                  >
+                    {t(child.label)}
+                  </Typography>
                 </GListItemButton>
               </List>
             );

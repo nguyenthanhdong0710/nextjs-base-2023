@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import createAppTheme from "./createAppTheme";

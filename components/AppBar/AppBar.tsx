@@ -5,19 +5,23 @@ import { APP_BAR_HEIGHT } from "@/utils/constant";
 import {
   Button,
   Toolbar,
-  Typography,
-  Box,
   Menu,
   MenuItem,
-  Select,
-  SelectChangeEvent,
   AppBar,
   IconButton,
   useTheme,
+  Avatar,
 } from "@mui/material";
-import { Brightness4, Brightness7 } from "@mui/icons-material";
+import { Brightness4, Brightness7, ExpandMore } from "@mui/icons-material";
+import { signOut, useSession } from "next-auth/react";
+import routerPath from "@/router-path";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import LocaleSwitcher from "../LocaleSwitcher";
 
 export default function AppBarComponent() {
+  const session = useSession();
+  const { locale } = useParams();
   const theme = useTheme();
   const [anchorAdminName, setAnchorAdminName] = useState<null | HTMLElement>();
 
@@ -27,20 +31,6 @@ export default function AppBarComponent() {
 
   const handleAdminNameMenuClose = () => {
     setAnchorAdminName(null);
-  };
-
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    // i18n.changeLanguage(event.target.value);
-    console.log(
-      "🚀 ~ file: AppBar.tsx:28 ~ handleChange ~ event.target.value:",
-      event.target.value
-    );
-  };
-
-  const handleLogout = () => {
-    // dispatch(clearAuth());
-    // navigate(Path.login);
-    console.log("logout");
   };
 
   const t = (str: string) => str;
@@ -57,27 +47,11 @@ export default function AppBarComponent() {
         borderColor: "gray.200",
       }}
     >
-      <Toolbar>
-        <Button
-          color="inherit"
-          sx={{ px: 0.5 }}
-          // onClick={() => navigate(Path.home)}
-        >
-          <Box sx={{ width: 36, height: 36, mr: 0.5 }} />
-          LOGO
-        </Button>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          &nbsp;
-        </Typography>
-        <Typography sx={{ pr: 1 }}>{t("sidebar.chooseLanguage")}</Typography>
-        <Select value={"vi"} onChange={handleChange}>
-          <MenuItem value="kr">{t("sidebar.kr")}</MenuItem>
-          <MenuItem value="vi">{t("sidebar.vi")}</MenuItem>
-          <MenuItem value="en">{t("sidebar.en")}</MenuItem>
-        </Select>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          &nbsp;
-        </Typography>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Link href={routerPath(String(locale)).dashboard} replace>
+          <Button variant="secondary">LOGO</Button>
+        </Link>
+        <LocaleSwitcher />
         {theme.palette.mode} mode
         <IconButton
           sx={{ ml: 1 }}
@@ -86,18 +60,6 @@ export default function AppBarComponent() {
         >
           {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
-        {/* <RLink to={Path.home}>
-          <h1>{t("sidebar.home")}</h1>
-        </RLink>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          &nbsp;
-        </Typography>
-        <RLink to={Path.sample}>
-          <h1>{t("sidebar.sample")}</h1>
-        </RLink> */}
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          &nbsp;
-        </Typography>
         <div>
           <Button
             id="basic-button"
@@ -106,11 +68,14 @@ export default function AppBarComponent() {
             aria-expanded={anchorAdminName ? "true" : undefined}
             onClick={handleAdminNameClick}
             color={anchorAdminName ? "primary" : "inherit"}
-            // endIcon={<ExpandMore />}
-            sx={{ ml: 2 }}
+            endIcon={<ExpandMore />}
           >
-            {/* {user?.username} */}
-            username
+            <Avatar
+              alt={session.data?.user?.name || ""}
+              src={session.data?.user?.image || ""}
+              className="mr-4"
+            />
+            {session.data?.user?.name || ""}
           </Button>
           <Menu
             id="basic-menu"
@@ -126,7 +91,7 @@ export default function AppBarComponent() {
                 type="button"
                 fullWidth
                 variant="contained"
-                onClick={() => handleLogout()}
+                onClick={() => signOut()}
               >
                 {t("Logout")}
               </Button>
