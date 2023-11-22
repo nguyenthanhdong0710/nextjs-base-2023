@@ -1,9 +1,6 @@
-import { Box } from "@mui/material";
+import Navigate from "@/components/Navigate";
+import routerPath from "./router-path";
 
-export default function Home() {
-  return (
-    <Box className="h-screen w-screen flex justify-center items-center">
-      Hello Dong!
-    </Box>
-  );
+export default function Root() {
+  return <Navigate to={routerPath.dashboard}></Navigate>;
 }

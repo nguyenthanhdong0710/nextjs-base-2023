@@ -1,12 +1,19 @@
 "use client";
 
 import { ReactNode } from "react";
-import { StyledEngineProvider } from "@mui/material";
+import { Box, StyledEngineProvider } from "@mui/material";
+import { AppThemeProvider } from "@/theme";
 
 export default function ClientImportGlobal({
   children,
 }: {
   children: ReactNode;
 }) {
-  return <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>;
+  return (
+    <StyledEngineProvider injectFirst>
+      <AppThemeProvider>
+        <Box sx={{ backgroundColor: "background.default" }}>{children}</Box>
+      </AppThemeProvider>
+    </StyledEngineProvider>
+  );
 }
