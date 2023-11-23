@@ -2,10 +2,10 @@ import { PaletteOptions } from "@mui/material";
 
 const darkPalette: PaletteOptions = {
   mode: "dark",
-  background: {
-    default: "#1f1f1f",
-    paper: "#303135",
-  },
+  // background: {
+  //   default: "#1f1f1f",
+  //   paper: "#303135",
+  // },
   primary: {
     main: "#fcd535",
   },

@@ -14,14 +14,11 @@ import {
 } from "@mui/material";
 import { Brightness4, Brightness7, ExpandMore } from "@mui/icons-material";
 import { signOut, useSession } from "next-auth/react";
-import routerPath from "@/router-path";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import LocaleSwitcher from "../LocaleSwitcher";
+import { Link } from "@/navigation";
 
 export default function AppBarComponent() {
   const session = useSession();
-  const { locale } = useParams();
   const theme = useTheme();
   const [anchorAdminName, setAnchorAdminName] = useState<null | HTMLElement>();
 
@@ -44,22 +41,24 @@ export default function AppBarComponent() {
         boxShadow: "none",
         height: APP_BAR_HEIGHT,
         borderBottom: 1,
-        borderColor: "gray.200",
+        borderColor: "gray.800",
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href={routerPath(String(locale)).dashboard} replace>
+        <Link href={{ pathname: "/dashboard" }} replace>
           <Button variant="secondary">LOGO</Button>
         </Link>
         <LocaleSwitcher />
-        {theme.palette.mode} mode
-        <IconButton
-          sx={{ ml: 1 }}
-          // onClick={colorMode.toggleColorMode}
-          color="inherit"
-        >
-          {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
+        <div>
+          {theme.palette.mode} mode
+          <IconButton
+            sx={{ ml: 1 }}
+            // onClick={colorMode.toggleColorMode}
+            color="inherit"
+          >
+            {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+          </IconButton>
+        </div>
         <div>
           <Button
             id="basic-button"

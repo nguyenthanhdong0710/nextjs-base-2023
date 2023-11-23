@@ -1,5 +1,7 @@
 const navbar = {
   chooseLanguage: "Ngôn ngữ",
+  vi: "Tiếng Việt",
+  en: "Tiếng Anh",
 };
 
 const sidebar = {

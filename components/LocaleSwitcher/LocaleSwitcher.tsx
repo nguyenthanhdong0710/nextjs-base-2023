@@ -17,17 +17,19 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <>
-      <Typography sx={{ pr: 1 }}>{t("navbar.chooseLanguage")}</Typography>
+    <div>
+      <Typography component="span" sx={{ pr: 1 }}>
+        {t("navbar.chooseLanguage")}
+      </Typography>
       <Select value={String(locale)} onChange={handleChange}>
         {LOCALES.map((locale) => {
           return (
             <MenuItem key={locale} value={locale}>
-              {locale}
+              {t(`navbar.${locale}`)}
             </MenuItem>
           );
         })}
       </Select>
-    </>
+    </div>
   );
 }

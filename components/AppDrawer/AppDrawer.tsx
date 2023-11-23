@@ -15,14 +15,10 @@ function AppDrawer({ width, height }: AppDrawerProps) {
   };
 
   return (
-    <Box
-      component="nav"
-      sx={{ width: { sm: width }, height: { sm: height } }}
-      aria-label="rabbit-app-drawer"
-    >
-      <Drawer
+    <Box component="nav" sx={{ width, height }} aria-label="rabbit-app-drawer">
+      {/* <Drawer
         variant="temporary"
-        open={true}
+        open
         onClose={onClose}
         ModalProps={{
           keepMounted: true, // Better open performance on mobile.
@@ -39,7 +35,7 @@ function AppDrawer({ width, height }: AppDrawerProps) {
         }}
       >
         <DrawerContent />
-      </Drawer>
+      </Drawer> */}
       <Drawer
         variant="permanent"
         sx={{

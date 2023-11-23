@@ -7,8 +7,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import { styled } from "@mui/material/styles";
 import { DrawerItem, DrawerChildItem } from "./DrawerItems";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { usePathname } from '@/navigation';
 
 const GListItem = styled(ListItem)(() => {
   const theme = useTheme();

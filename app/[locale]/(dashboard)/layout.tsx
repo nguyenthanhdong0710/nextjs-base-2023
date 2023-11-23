@@ -2,7 +2,7 @@
 
 import AppBarComponent from "@/components/AppBar/AppBar";
 import AppDrawer from "@/components/AppDrawer/AppDrawer";
-import NavigateLogin from "@/components/NavigateLogin";
+import { redirect, usePathname } from "@/navigation";
 import { APP_BAR_HEIGHT, DRAWER_WIDTH } from "@/utils/constant";
 import { Box, Container } from "@mui/material";
 import { useSession } from "next-auth/react";
@@ -13,9 +13,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const session = useSession();
+  const pathname = usePathname();
 
   if (!session || !session.data?.user) {
-    return <NavigateLogin />;
+    redirect({
+      pathname: "/login",
+      query: { redirect: pathname },
+    });
+    return null;
   }
 
   return (
@@ -33,7 +38,6 @@ export default function DashboardLayout({
           display: "flex",
           flexGrow: 1,
           height: `calc(100% - ${APP_BAR_HEIGHT}px)`,
-          minWidth: 960,
         }}
       >
         <AppDrawer

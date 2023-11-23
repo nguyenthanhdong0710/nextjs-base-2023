@@ -12,8 +12,6 @@ type DrawerContentProps = {
 };
 
 function DrawerContent({ sx }: DrawerContentProps) {
-  const { locale } = useParams();
-
   return (
     <Box
       sx={{
@@ -25,7 +23,7 @@ function DrawerContent({ sx }: DrawerContentProps) {
       }}
     >
       <List sx={{ px: 1 }}>
-        {DrawerItems(String(locale)).map((item) => (
+        {DrawerItems.map((item) => (
           <DrawerListItem key={item.path} data={item} />
         ))}
       </List>
