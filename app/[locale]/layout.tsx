@@ -9,7 +9,9 @@ import { Box } from "@mui/system";
 import LOCALES from "@/messages";
 import { notFound } from "next/navigation";
 
+import "@/styles/index.scss";
 import "./globals.css";
+
 import { getMessages } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -15,7 +15,16 @@ function AppDrawer({ width, height }: AppDrawerProps) {
   };
 
   return (
-    <Box component="nav" sx={{ width, height }} aria-label="rabbit-app-drawer">
+    <Box
+      component="nav"
+      sx={{
+        width,
+        height,
+        borderRight: "1px solid",
+        borderRightColor: "gray.500",
+      }}
+      aria-label="app-drawer"
+    >
       {/* <Drawer
         variant="temporary"
         open
@@ -40,7 +49,6 @@ function AppDrawer({ width, height }: AppDrawerProps) {
         variant="permanent"
         sx={{
           display: { xs: "none", sm: "block" },
-          backgroundColor: "white",
           "& .MuiDrawer-paper": {
             borderRadius: 0,
             border: "none",
@@ -49,6 +57,8 @@ function AppDrawer({ width, height }: AppDrawerProps) {
             height,
             top: "auto",
             bottom: 0,
+            borderRight: "1px solid",
+            borderRightColor: "gray.800",
           },
         }}
         open
