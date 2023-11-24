@@ -5,10 +5,10 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // important: "#root",
-  // corePlugins: {
-  //   preflight: false,
-  // },
+  important: "#root",
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {},
   },

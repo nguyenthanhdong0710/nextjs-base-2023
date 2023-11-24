@@ -49,16 +49,13 @@ export default function AppBarComponent() {
           <Button variant="secondary">LOGO</Button>
         </Link>
         <LocaleSwitcher />
-        <div>
-          {theme.palette.mode} mode
-          <IconButton
-            sx={{ ml: 1 }}
-            // onClick={colorMode.toggleColorMode}
-            color="inherit"
-          >
-            {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
-          </IconButton>
-        </div>
+        <IconButton
+          sx={{ ml: 1 }}
+          // onClick={colorMode.toggleColorMode}
+          color="inherit"
+        >
+          {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+        </IconButton>
         <div>
           <Button
             id="basic-button"
@@ -89,7 +86,7 @@ export default function AppBarComponent() {
               <Button
                 type="button"
                 fullWidth
-                variant="contained"
+                variant="primary"
                 onClick={() => signOut()}
               >
                 {t("Logout")}
