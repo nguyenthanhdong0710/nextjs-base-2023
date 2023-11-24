@@ -12,14 +12,6 @@ const slice = createSlice({
   name: "common",
   initialState,
   reducers: {
-    openSidebar: (state) => {
-      return {
-        ...state,
-        sidebar: {
-          open: true,
-        },
-      };
-    },
     closeSidebar: (state) => {
       return {
         ...state,
@@ -36,18 +28,10 @@ const slice = createSlice({
         },
       };
     },
-    updateSidebar: (state, payload: PayloadAction<boolean>) => {
-      return {
-        ...state,
-        sidebar: {
-          open: payload.payload,
-        },
-      };
-    },
   },
 });
 
-export const { openSidebar, closeSidebar, toggleSidebar, updateSidebar } =
+export const { closeSidebar, toggleSidebar } =
   slice.actions;
 
 export default slice.reducer;

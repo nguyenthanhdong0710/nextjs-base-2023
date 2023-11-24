@@ -35,7 +35,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={inter.className} id="root">
         <SessionProvider session={session}>
           <NextIntlClientProvider
             locale={locale}
@@ -45,7 +45,7 @@ export default async function RootLayout({
             <StoreProvider>
               <StyledEngineProvider injectFirst>
                 <AppThemeProvider>
-                  <Box sx={{ backgroundColor: "background.default" }} id="root">
+                  <Box sx={{ backgroundColor: "background.default" }}>
                     {children}
                   </Box>
                 </AppThemeProvider>

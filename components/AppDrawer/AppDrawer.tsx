@@ -5,8 +5,8 @@ import Drawer from "@mui/material/Drawer";
 import DrawerContent from "./DrawerContent";
 import { useAppDispatch, useAppSelector } from "@/redux";
 import { closeSidebar } from "@/redux/commonReducer";
-import ThemeSwitcher from "../ThemeSwitcher";
-import LocaleSwitcher from "../LocaleSwitcher";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 interface AppDrawerProps {
   width: number;
@@ -32,6 +32,7 @@ function AppDrawer({ width, height }: AppDrawerProps) {
       }}
       aria-label="app-drawer"
     >
+      {/* mobile */}
       <Drawer
         variant="temporary"
         open={open}
@@ -48,12 +49,14 @@ function AppDrawer({ width, height }: AppDrawerProps) {
           },
         }}
       >
-        <Box className="flex flex-col px-2 sm:hidden">
+        <Box className="flex flex-col p-2 items-start gap-1">
           <ThemeSwitcher />
           <LocaleSwitcher />
         </Box>
         <DrawerContent />
       </Drawer>
+
+      {/* pc */}
       <Drawer
         variant="permanent"
         sx={{

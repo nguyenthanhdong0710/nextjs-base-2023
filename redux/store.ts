@@ -11,20 +11,22 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import commonReducer from "./commonReducer";
 import packageInfo from "@/package.json";
+import commonReducer from "./commonReducer";
+import themeReducer from "./themeReducer";
 
 export const key = packageInfo.name || "nextjs";
 
 const rootReducer = combineReducers({
   common: commonReducer,
+  theme: themeReducer,
 });
 
 const persistedReducer = persistReducer(
   {
     key,
     storage,
-    whitelist: [],
+    whitelist: ["theme"],
   },
   rootReducer
 );
