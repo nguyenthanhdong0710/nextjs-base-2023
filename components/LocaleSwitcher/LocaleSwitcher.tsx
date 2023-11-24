@@ -23,9 +23,10 @@ export default function LocaleSwitcher() {
       </Typography>
       <Select value={String(locale)} onChange={handleChange}>
         {LOCALES.map((locale) => {
+          const lang = locale as "vi" | "en";
           return (
-            <MenuItem key={locale} value={locale}>
-              {t(`navbar.${locale}`)}
+            <MenuItem key={lang} value={lang}>
+              {t(`navbar.${lang}`)}
             </MenuItem>
           );
         })}

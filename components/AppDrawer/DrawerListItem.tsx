@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { styled } from "@mui/material/styles";
 import { DrawerItem, DrawerChildItem } from "./DrawerItems";
 import { useTranslations } from "next-intl";
-import { usePathname } from '@/navigation';
+import { usePathname } from "@/navigation";
 
 const GListItem = styled(ListItem)(() => {
   const theme = useTheme();
@@ -110,7 +110,7 @@ function DrawerListItem({ data }: DrawerListItemProps) {
                 : {}
             }
           >
-            {t(data.label)}
+            {t(data.label as any)}
           </Typography>
         </ListItemButton>
       </GListItem>
@@ -157,7 +157,7 @@ function DrawerListItem({ data }: DrawerListItemProps) {
                         : {}
                     }
                   >
-                    {t(child.label)}
+                    {t(child.label as any)}
                   </Typography>
                 </GListItemButton>
               </List>
