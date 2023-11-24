@@ -39,6 +39,8 @@ export default function Login() {
 
   const { handleSubmit, control } = useForm<ILoginForm>({
     defaultValues: {
+      username: "",
+      password: "",
       acceptPolicy: false,
     },
     resolver: yupResolver(loginSchema),

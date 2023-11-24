@@ -3,19 +3,14 @@
 import { ReactNode, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import createAppTheme from "./createAppTheme";
-import { CssBaseline, useMediaQuery } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 
 type AppThemeProviderProps = {
   children: ReactNode;
 };
 
 function AppThemeProvider({ children }: AppThemeProviderProps) {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-  const theme = useMemo(
-    () => createAppTheme(prefersDarkMode ? "dark" : "light"),
-    [prefersDarkMode]
-  );
+  const theme = useMemo(() => createAppTheme("dark"), []);
 
   return (
     <ThemeProvider theme={theme}>

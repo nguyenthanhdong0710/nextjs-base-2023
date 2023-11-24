@@ -3,6 +3,10 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import DrawerContent from "./DrawerContent";
+import { useAppDispatch, useAppSelector } from "@/redux";
+import { closeSidebar } from "@/redux/commonReducer";
+import ThemeSwitcher from "../ThemeSwitcher";
+import LocaleSwitcher from "../LocaleSwitcher";
 
 interface AppDrawerProps {
   width: number;
@@ -10,25 +14,28 @@ interface AppDrawerProps {
 }
 
 function AppDrawer({ width, height }: AppDrawerProps) {
-  const onClose = () => {
-    // dispatch(closeDrawer());
+  const dispatch = useAppDispatch();
+  const { open } = useAppSelector((s) => s.common.sidebar);
+
+  const handleCloseSidebar = () => {
+    dispatch(closeSidebar());
   };
 
   return (
     <Box
       component="nav"
       sx={{
-        width,
-        height,
+        width: { sm: width },
+        height: { sm: height },
         borderRight: "1px solid",
         borderRightColor: "gray.500",
       }}
       aria-label="app-drawer"
     >
-      {/* <Drawer
+      <Drawer
         variant="temporary"
-        open
-        onClose={onClose}
+        open={open}
+        onClose={handleCloseSidebar}
         ModalProps={{
           keepMounted: true, // Better open performance on mobile.
         }}
@@ -36,15 +43,17 @@ function AppDrawer({ width, height }: AppDrawerProps) {
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width,
-            height,
             top: "auto",
             bottom: 0,
           },
         }}
       >
+        <Box className="flex flex-col px-2 sm:hidden">
+          <ThemeSwitcher />
+          <LocaleSwitcher />
+        </Box>
         <DrawerContent />
-      </Drawer> */}
+      </Drawer>
       <Drawer
         variant="permanent"
         sx={{

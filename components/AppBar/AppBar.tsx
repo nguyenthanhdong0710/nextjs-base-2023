@@ -11,15 +11,23 @@ import {
   IconButton,
   useTheme,
   Avatar,
+  Box,
 } from "@mui/material";
-import { Brightness4, Brightness7, ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import { signOut, useSession } from "next-auth/react";
 import LocaleSwitcher from "../LocaleSwitcher";
 import { Link } from "@/navigation";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useAppDispatch, useAppSelector } from "@/redux";
+import { toggleSidebar } from "@/redux/commonReducer";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 export default function AppBarComponent() {
   const session = useSession();
-  const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const { open } = useAppSelector((s) => s.common.sidebar);
+
   const [anchorAdminName, setAnchorAdminName] = useState<null | HTMLElement>();
 
   const handleAdminNameClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -30,7 +38,9 @@ export default function AppBarComponent() {
     setAnchorAdminName(null);
   };
 
-  const t = (str: string) => str;
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar());
+  };
 
   return (
     <AppBar
@@ -43,20 +53,22 @@ export default function AppBarComponent() {
         borderBottom: 1,
         borderColor: "gray.800",
       }}
+      className="flex justify-center"
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href={{ pathname: "/dashboard" }} replace>
-          <Button variant="secondary">LOGO</Button>
-        </Link>
-        <LocaleSwitcher />
-        <IconButton
-          sx={{ ml: 1 }}
-          // onClick={colorMode.toggleColorMode}
-          color="inherit"
-        >
-          {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
-        <div>
+        <Box className="flex items-center gap-3">
+          <IconButton className="sm:hidden" onClick={handleToggleSidebar}>
+            {open ? <MenuOpenIcon></MenuOpenIcon> : <MenuIcon></MenuIcon>}
+          </IconButton>
+          <Link href={{ pathname: "/dashboard" }} replace>
+            <Button variant="secondary">LOGO</Button>
+          </Link>
+        </Box>
+        <Box className="flex items-center gap-5">
+          <Box className="items-center gap-5 hidden sm:flex">
+            <ThemeSwitcher />
+            <LocaleSwitcher />
+          </Box>
           <Button
             id="basic-button"
             aria-controls={anchorAdminName ? "basic-menu" : undefined}
@@ -71,7 +83,9 @@ export default function AppBarComponent() {
               src={session.data?.user?.image || ""}
               className="mr-4"
             />
-            {session.data?.user?.name || ""}
+            <span className="hidden sm:block">
+              {session.data?.user?.name || ""}
+            </span>
           </Button>
           <Menu
             id="basic-menu"
@@ -82,6 +96,9 @@ export default function AppBarComponent() {
               "aria-labelledby": "basic-button",
             }}
           >
+            <MenuItem className="sm:hidden">
+              <span> {session.data?.user?.name || ""}</span>
+            </MenuItem>
             <MenuItem onClick={handleAdminNameMenuClose}>
               <Button
                 type="button"
@@ -89,11 +106,11 @@ export default function AppBarComponent() {
                 variant="primary"
                 onClick={() => signOut()}
               >
-                {t("Logout")}
+                Logout
               </Button>
             </MenuItem>
           </Menu>
-        </div>
+        </Box>
       </Toolbar>
     </AppBar>
   );

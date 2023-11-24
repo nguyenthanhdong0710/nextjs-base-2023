@@ -8,11 +8,11 @@ import { AppThemeProvider } from "@/theme";
 import { Box } from "@mui/system";
 import LOCALES from "@/messages";
 import { notFound } from "next/navigation";
+import { getMessages } from "next-intl/server";
+import StoreProvider from "@/redux/StoreProvider";
 
 import "@/styles/index.scss";
 import "./globals.css";
-
-import { getMessages } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,13 +42,15 @@ export default async function RootLayout({
             messages={messages}
             timeZone="Asia/Ho_Chi_Minh"
           >
-            <StyledEngineProvider injectFirst>
-              <AppThemeProvider>
-                <Box sx={{ backgroundColor: "background.default" }} id="root">
-                  {children}
-                </Box>
-              </AppThemeProvider>
-            </StyledEngineProvider>
+            <StoreProvider>
+              <StyledEngineProvider injectFirst>
+                <AppThemeProvider>
+                  <Box sx={{ backgroundColor: "background.default" }} id="root">
+                    {children}
+                  </Box>
+                </AppThemeProvider>
+              </StyledEngineProvider>
+            </StoreProvider>
           </NextIntlClientProvider>
         </SessionProvider>
       </body>

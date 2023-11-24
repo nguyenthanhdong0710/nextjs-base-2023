@@ -10,6 +10,14 @@ const config: Config = {
     preflight: false,
   },
   theme: {
+    screens: {
+      xs: "0px",
+      xm: "480px",
+      sm: "600px",
+      md: "900px",
+      lg: "1200px",
+      xl: "1536px",
+    },
     extend: {},
   },
   plugins: [],

@@ -17,20 +17,15 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <div>
-      <Typography component="span" sx={{ pr: 1 }}>
-        {t("navbar.chooseLanguage")}
-      </Typography>
-      <Select value={String(locale)} onChange={handleChange}>
-        {LOCALES.map((locale) => {
-          const lang = locale as "vi" | "en";
-          return (
-            <MenuItem key={lang} value={lang}>
-              {t(`navbar.${lang}`)}
-            </MenuItem>
-          );
-        })}
-      </Select>
-    </div>
+    <Select value={String(locale)} onChange={handleChange}>
+      {LOCALES.map((locale) => {
+        const lang = locale as "vi" | "en";
+        return (
+          <MenuItem key={lang} value={lang}>
+            {t(`navbar.${lang}`)}
+          </MenuItem>
+        );
+      })}
+    </Select>
   );
 }
