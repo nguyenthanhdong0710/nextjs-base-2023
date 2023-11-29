@@ -1,15 +1,7 @@
 "use client";
 
 import { useUserDetail } from "@/hooks/services/user/user";
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Box, CardContent, CardMedia, Typography } from "@mui/material";
 import { useParams } from "next/navigation";
 
 export default function UserDetailPage() {
@@ -18,9 +10,10 @@ export default function UserDetailPage() {
     userId: Number(userId),
   });
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <div className="text-center py-20">loading...</div>;
 
-  if (error || !user) return <div>failed to load</div>;
+  if (error || !user)
+    return <div className="text-center py-20">user not found</div>;
 
   return (
     <Box className="flex flex-col justify-center items-center gap-5 py-10">

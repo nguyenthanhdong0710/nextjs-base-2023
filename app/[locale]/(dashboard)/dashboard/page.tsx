@@ -14,9 +14,9 @@ export default function Dashboard() {
     perPage: 2,
   });
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <div className="text-center py-20">loading...</div>;
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div className="text-center py-20">failed to load</div>;
 
   const pages = [];
   for (let i = 1; i <= countPage; i++) {

@@ -16,9 +16,10 @@ export default function UserListPage() {
     perPage: Number(searchParams.get("perPage")) || 5,
   });
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <div className="text-center py-20">loading...</div>;
 
-  if (error || !users) return <div>failed to load</div>;
+  if (error || !users)
+    return <div className="text-center py-20">failed to load</div>;
 
   const createQueryString = (newPage: number, newPerPage: number) => {
     const params = new URLSearchParams(searchParams);

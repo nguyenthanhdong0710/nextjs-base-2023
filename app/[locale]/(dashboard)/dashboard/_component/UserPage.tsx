@@ -24,9 +24,10 @@ export default function UserPage({
     perPage: perPage,
   });
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <div className="text-center py-5">loading...</div>;
 
-  if (error || !users) return <div>failed to load</div>;
+  if (error || !users)
+    return <div className="text-center py-20">failed to load</div>;
 
   return (
     <>
