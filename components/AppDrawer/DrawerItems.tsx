@@ -19,18 +19,19 @@ export type DrawerItem = {
 const DrawerItems: Array<DrawerItem> = [
   {
     icon: <Dashboard />,
-    label: "sidebar.dashboard",
+    label: "sidebar.users",
     path: pathnames["/dashboard"],
+    matches: [pathnames["/dashboard"], pathnames["/users/[userId]"]],
   },
   {
     icon: <Dashboard />,
-    label: "sidebar.sample",
-    path: pathnames["/example"],
+    label: "sidebar.table",
+    path: pathnames["/user-list"],
     children: [
       {
-        label: "sidebar.sample",
-        path: pathnames["/example"],
-        matches: [pathnames["/example"]],
+        label: "sidebar.table",
+        path: pathnames["/user-list"],
+        matches: [pathnames["/user-list"]],
       },
     ],
   },

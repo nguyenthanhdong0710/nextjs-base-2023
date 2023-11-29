@@ -5,7 +5,6 @@ import List from "@mui/material/List";
 import { SxProps } from "@mui/material";
 import DrawerListItem from "./DrawerListItem";
 import DrawerItems from "./DrawerItems";
-import { useParams } from "next/navigation";
 
 type DrawerContentProps = {
   sx?: SxProps;

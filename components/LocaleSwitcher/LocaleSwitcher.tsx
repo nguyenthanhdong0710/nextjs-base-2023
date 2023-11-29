@@ -1,5 +1,5 @@
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useTranslations } from "next-intl";
 import LOCALES from "@/messages";
 

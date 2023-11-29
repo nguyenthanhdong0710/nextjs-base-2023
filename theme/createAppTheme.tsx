@@ -98,7 +98,7 @@ const createAppTheme = (mode: PaletteMode) => {
     },
     typography: {
       allVariants: {
-        fontFamily: "'Inter', sans-serif;",
+        fontFamily: "inherit",
         letterSpacing: 0,
       },
     },
@@ -222,7 +222,7 @@ const createAppTheme = (mode: PaletteMode) => {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            fontFamily: "'Inter', sans-serif;",
+            fontFamily: "inherit",
           },
         },
       },

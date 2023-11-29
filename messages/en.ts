@@ -5,12 +5,17 @@ const navbar = {
 };
 
 const sidebar = {
-  dashboard: "Dashboard",
-  sample: "Sample",
+  users: "Users",
+  table: "Table",
 };
 
 const dashboard = {
   title: "Dashboard",
+  loadMore: "Load more",
+};
+
+const userList = {
+  title: "User List",
 };
 
 const login = {
@@ -30,4 +35,4 @@ const message = {
   password: "Password must contains 8 to 30 letter",
 };
 
-export default { navbar, sidebar, login, message, dashboard };
+export default { navbar, sidebar, login, message, dashboard, userList };

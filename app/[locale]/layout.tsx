@@ -13,6 +13,7 @@ import StoreProvider from "@/redux/StoreProvider";
 
 import "@/styles/index.scss";
 import "./globals.css";
+import SWRProvider from "@/components/SWRProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,13 +44,15 @@ export default async function RootLayout({
             timeZone="Asia/Ho_Chi_Minh"
           >
             <StoreProvider>
-              <StyledEngineProvider injectFirst>
-                <AppThemeProvider>
-                  <Box sx={{ backgroundColor: "background.default" }}>
-                    {children}
-                  </Box>
-                </AppThemeProvider>
-              </StyledEngineProvider>
+              <SWRProvider>
+                <StyledEngineProvider injectFirst>
+                  <AppThemeProvider>
+                    <Box sx={{ backgroundColor: "background.default" }}>
+                      {children}
+                    </Box>
+                  </AppThemeProvider>
+                </StyledEngineProvider>
+              </SWRProvider>
             </StoreProvider>
           </NextIntlClientProvider>
         </SessionProvider>

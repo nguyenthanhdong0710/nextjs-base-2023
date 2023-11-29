@@ -5,12 +5,16 @@ const navbar = {
 };
 
 const sidebar = {
-  dashboard: "Trang chủ",
-  sample: "Mẫu",
+  users: "Người dùng",
+  table: "Bảng",
 };
 
 const dashboard = {
   title: "Trang chủ",
 };
 
-export default { navbar, sidebar, dashboard };
+const userList = {
+  title: "User List",
+};
+
+export default { navbar, sidebar, dashboard, userList };

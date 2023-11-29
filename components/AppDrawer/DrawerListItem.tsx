@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { styled } from "@mui/material/styles";
 import { DrawerItem, DrawerChildItem } from "./DrawerItems";
 import { useTranslations } from "next-intl";
-import { usePathname } from "@/navigation";
+import { redirect, usePathname, useRouter } from "@/navigation";
 
 const GListItem = styled(ListItem)(() => {
   const theme = useTheme();
@@ -42,6 +42,7 @@ type DrawerListItemProps = {
 function DrawerListItem({ data }: DrawerListItemProps) {
   const t = useTranslations();
   const pathname = usePathname();
+  const router = useRouter();
 
   const { hasOneSelected, selected } = useMemo(() => {
     let hasOneSelectedCheck = false;
@@ -58,20 +59,23 @@ function DrawerListItem({ data }: DrawerListItemProps) {
         : []),
       ...(data.children || []),
     ];
+
     children.forEach((current, index) => {
       const matched = current.matches?.find((match) => {
         return match === pathname;
       });
+
       selectedSet[index] = pathname === current.path || Boolean(matched);
       hasOneSelectedCheck = hasOneSelectedCheck || selectedSet[index];
     });
+
     return {
       hasOneSelected:
         (!data.children?.length && pathname === data.path) ||
         hasOneSelectedCheck,
       selected: selectedSet,
     };
-  }, [data.children, data.matches, data.path]);
+  }, [data.children, data.matches, data.path, pathname]);
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -86,7 +90,7 @@ function DrawerListItem({ data }: DrawerListItemProps) {
       setAnchorEl(event.currentTarget);
       return;
     }
-    // navigate(data.path);
+    router.push(data.path as any);
   };
 
   return (
@@ -142,7 +146,7 @@ function DrawerListItem({ data }: DrawerListItemProps) {
                   selected={Boolean(selected[index])}
                   onClick={() => {
                     handlePopoverClose();
-                    // navigate(child.path);
+                    router.push(child.path as any);
                   }}
                 >
                   <Typography
