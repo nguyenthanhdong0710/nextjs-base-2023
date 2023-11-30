@@ -2,6 +2,8 @@
 
 hello, is me.
 
+Checking out the [LIVE DEMO](https://nextjs-base-2023.vercel.app/) HERE!
+
 ## Prepare
 
 - Node: 16.x.x.
