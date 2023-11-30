@@ -37,6 +37,7 @@ Run `npm run prepare` to install husky.
 
 ## DO NOT DO THIS
 - DO NOT using fixed text in html. Use translation in next-intl. For example we use `en.ts`.
+- DO NOT using color in Tailwind, for change theme perfectly, we need use color form MUI only. Check `createAppTheme.tsx`.
 
 ## REMEMBER THIS
 - REMEMBER that use Link, Router, Pathname from `next-intl` no need to include locale, but from `next/navigator` does.
