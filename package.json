@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint --no-cache --fix --ext .ts,.tsx .",
     "pretty": "prettier --write .",
-    "prepare": "husky install",
+    "prepare": "husky install && (chmod ug+x .husky/* | chmod ug+x .git/hooks/*)",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
