@@ -31,7 +31,6 @@ const slice = createSlice({
   },
 });
 
-export const { closeSidebar, toggleSidebar } =
-  slice.actions;
+export const { closeSidebar, toggleSidebar } = slice.actions;
 
 export default slice.reducer;

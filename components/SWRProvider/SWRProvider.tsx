@@ -8,9 +8,10 @@ const SWRProvider = ({ children }: { children: ReactNode }) => {
       value={{
         // refreshInterval: 3000,
         fetcher: (resource: string, init) =>
-          fetch(new URL(resource, process.env.NEXT_PUBLIC_API_URL ?? ""), init).then(
-            (res) => res.json()
-          ),
+          fetch(
+            new URL(resource, process.env.NEXT_PUBLIC_API_URL ?? ""),
+            init,
+          ).then((res) => res.json()),
         onError: (err) => {
           if (err.status === 401) {
             // TODO: do your logic here

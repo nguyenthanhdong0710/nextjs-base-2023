@@ -12,7 +12,7 @@ export const useUserList = ({ page, perPage }: UserListParam) => {
       new URLSearchParams({
         page: String(page),
         per_page: String(perPage),
-      }).toString()
+      }).toString(),
   );
 
   return {
@@ -28,7 +28,7 @@ export const useUserList = ({ page, perPage }: UserListParam) => {
 
 export const useUserDetail = ({ userId }: UserDetailParam) => {
   const { data, error, isLoading } = useSWR<UserDetailResponse>(
-    "/api/users/" + userId
+    "/api/users/" + userId,
   );
 
   return {
