@@ -38,16 +38,19 @@ Run `npm run prepare` to install husky.
 - Try to setup custom hook instead of repeat useState and useEffect.
 
 ## DO NOT DO THIS
+
 - DO NOT using fixed text in html. Use translation in next-intl. For example we use `en.ts`.
 - DO NOT using color in Tailwind, for change theme perfectly, we need use color form MUI only. Check `createAppTheme.tsx`.
 
 ## REMEMBER THIS
+
 - REMEMBER that use Link, Router, Pathname from `next-intl` no need to include locale, but from `next/navigator` does.
 - REMEMBER that always using Link instead of Button and onClick event calling router hook.
 
 ## good to know
 
 Breakpoint: (both config in `tailwind.config.ts` and `createAppTheme.tsx`)
+
 - xs (extra-small) = 0px
 - sm (small) = 600px
 - md (medium) = 900px
@@ -55,9 +58,10 @@ Breakpoint: (both config in `tailwind.config.ts` and `createAppTheme.tsx`)
 - xl (extra-large) = 1536px
 
 Typography
-- 12px  <=>  variant="caption"
-- 14px  <=>  variant="body2"
-- 16px  <=>  variant="body1"
-- 20px  <=>  variant="h6"
-- 24px  <=>  variant="h5"
-- 34px  <=>  variant="h4"
+
+- 12px <=> variant="caption"
+- 14px <=> variant="body2"
+- 16px <=> variant="body1"
+- 20px <=> variant="h6"
+- 24px <=> variant="h5"
+- 34px <=> variant="h4"

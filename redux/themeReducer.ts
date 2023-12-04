@@ -5,21 +5,19 @@ type ThemeStateType = {
 };
 
 const initialState: ThemeStateType = {
-  themeMode: "light"
+  themeMode: "light",
 };
 
 const slice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-
     toggleThemeMode: (state) => {
       return {
         ...state,
         themeMode: state.themeMode === "dark" ? "light" : "dark",
       };
     },
-
   },
 });
 

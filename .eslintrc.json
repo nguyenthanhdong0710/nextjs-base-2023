@@ -30,14 +30,15 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "react/jsx-uses-vars": "error",
     "react-hooks/rules-of-hooks": "error",
+    "react/jsx-uses-vars": "warn",
     "react-hooks/exhaustive-deps": "warn",
-    "no-underscore-dangle": ["off"],
-    "react/react-in-jsx-scope": ["off"],
-    "react/jsx-uses-react": ["off"],
-    "react/jsx-props-no-spreading": ["off"],
-    "react/no-unescaped-entities": ["off"],
-    "react/require-default-props": ["off"]
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-underscore-dangle": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unescaped-entities": "off",
+    "react/require-default-props": "off"
   }
 }

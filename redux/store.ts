@@ -28,7 +28,7 @@ const persistedReducer = persistReducer(
     storage,
     whitelist: ["theme"],
   },
-  rootReducer
+  rootReducer,
 );
 
 const store = configureStore({
