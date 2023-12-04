@@ -6,7 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pretty": "prettier --write .",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint",
+      "npm run pretty",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -34,6 +44,8 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "node-sass": "^9.0.0",
     "postcss": "^8",
     "sass": "^1.69.5",
