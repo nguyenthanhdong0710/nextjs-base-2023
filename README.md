@@ -6,7 +6,7 @@ Checking out the [LIVE DEMO](https://nextjs-base-2023.vercel.app/) HERE!
 
 ## Prepare
 
-- Node: 16.x.x.
+- Node >= 16.x.x.
 - IDE: VSCode.
 - Extension:
   [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint),
