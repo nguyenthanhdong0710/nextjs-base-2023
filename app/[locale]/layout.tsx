@@ -38,11 +38,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={inter.className} id="root">
         <SessionProvider session={session}>
-          <NextIntlClientProvider
-            locale={locale}
-            messages={messages}
-            timeZone="Asia/Ho_Chi_Minh"
-          >
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <StoreProvider>
               <SWRProvider>
                 <StyledEngineProvider injectFirst>
